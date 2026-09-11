@@ -16,4 +16,6 @@
 #include <gd32f527_syscfg.h>
 #elif defined(CONFIG_SOC_SERIES_GD32L23X)
 #include <gd32l23x_syscfg.h>
+#elif defined(CONFIG_SOC_SERIES_GD32VW55X)
+#include <gd32vw55x_syscfg.h>
 #endif

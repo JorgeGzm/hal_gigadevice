@@ -1,0 +1,177 @@
+# GD32VW553XX pin definitions
+#
+# Sources:
+# - GD32VW553xx Datasheet (Rev 1.5), tables 2-5/2-6/2-7: SPI and I2C0/I2C1
+#   alternate functions.
+# - GigaDevice GD32VW55x WiFi/BLE SDK (MSDK/plf/src/uart/uart.h and
+#   MBL/mainboot/mbl.c): USART0/UART1/UART2 alternate functions.
+#
+# NOTE: this file is NOT a complete transcription of the datasheet AF
+# tables. Signals whose AF assignments were not available in the above
+# sources (TIMERx channels, ADC channel inputs, I2S, QSPI flash and the
+# JTAG debug port) are not listed. Pins without any known AF still get an
+# ANALOG entry (used for low power mode).
+#
+# Pin codes:
+#
+# - 32 pins (QFN32): K
+#
+# NOTE: the exact QFN32 pin list could not be fully confirmed. Pins
+# PA0-PA8, PA12-PA15, PB0, PB3, PB4, PB15, PC0-PC2, PC14 and PC15 are
+# confirmed present on the GD32VW553K-START board (GD32VW553KMQ7). The
+# remaining pins below (PA9-PA11, PB1, PB12, PB13, PC8) are taken from the
+# family pinmap and are over-inclusively marked with pincode K.
+#
+# Memory codes:
+#
+# - 4096Kb Flash, 320Kb SRAM: M
+#
+# Copyright (c) 2026 GZM
+# SPDX-License-Identifier: Apache 2.0
+
+model: af
+
+series: gd32vw553
+
+variants:
+  - pincode: K
+    memories: [M]
+
+pins:
+  PA0:
+    pincodes: [K]
+    afs:
+      USART0_TX: 0
+      SPI_MOSI: 5
+      UART1_CTS: 7
+  PA1:
+    pincodes: [K]
+    afs:
+      USART0_RX: 0
+      SPI_MISO: 5
+      UART1_RTS: 7
+  PA2:
+    pincodes: [K]
+    afs:
+      USART0_CTS: 0
+      I2C0_SCL: 4
+      SPI_SCK: 5
+  PA3:
+    pincodes: [K]
+    afs:
+      USART0_RTS: 0
+      I2C0_SDA: 4
+      SPI_NSS: 5
+  PA4:
+    pincodes: [K]
+    afs:
+      SPI_MOSI: 2
+      SPI_NSS: 5
+  PA5:
+    pincodes: [K]
+    afs:
+      SPI_MISO: 4
+      SPI_SCK: 5
+  PA6:
+    pincodes: [K]
+    afs:
+      I2C1_SCL: 4
+      SPI_MISO: 5
+      SPI_SCK: 7
+      UART2_TX: 10
+  PA7:
+    pincodes: [K]
+    afs:
+      I2C1_SDA: 0
+      SPI_NSS: 4
+      SPI_MOSI: 5
+      UART2_RX: 8
+  PA8:
+    pincodes: [K]
+    afs:
+      USART0_TX: 2
+      UART1_RX: 3
+      I2C0_SDA: 5
+      I2C1_SDA: 6
+  PA9:
+    pincodes: [K]
+    afs:
+      SPI_MOSI: 0
+  PA10:
+    pincodes: [K]
+    afs:
+      SPI_MISO: 0
+  PA11:
+    pincodes: [K]
+    afs:
+      SPI_SCK: 0
+  PA12:
+    pincodes: [K]
+    afs:
+      SPI_NSS: 6
+  PA13:
+    pincodes: [K]
+    afs:
+      I2C0_SMBA: 4
+      I2C1_SCL: 6
+  PA14:
+    pincodes: [K]
+    afs:
+      I2C1_SMBA: 4
+      I2C1_SDA: 6
+  PA15:
+    pincodes: [K]
+    afs:
+      I2C0_SCL: 4
+      I2C1_SCL: 6
+  PB0:
+    pincodes: [K]
+    afs:
+      I2C0_SCL: 6
+      UART2_CTS: 10
+  PB1:
+    pincodes: [K]
+    afs:
+      I2C0_SDA: 6
+      UART2_RTS: 10
+  PB3:
+    pincodes: [K]
+    afs: {}
+  PB4:
+    pincodes: [K]
+    afs: {}
+  PB12:
+    pincodes: [K]
+    afs:
+      I2C1_SCL: 6
+  PB13:
+    pincodes: [K]
+    afs:
+      I2C1_SDA: 6
+  PB15:
+    pincodes: [K]
+    afs:
+      I2C0_SCL: 4
+      I2C1_SCL: 6
+      UART1_TX: 7
+      USART0_RX: 8
+  PC0:
+    pincodes: [K]
+    afs: {}
+  PC1:
+    pincodes: [K]
+    afs: {}
+  PC2:
+    pincodes: [K]
+    afs: {}
+  PC8:
+    pincodes: [K]
+    afs:
+      I2C0_SDA: 4
+      I2C1_SDA: 6
+  PC14:
+    pincodes: [K]
+    afs: {}
+  PC15:
+    pincodes: [K]
+    afs: {}

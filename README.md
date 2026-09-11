@@ -1,7 +1,7 @@
 # Introduction
 
-The **hal_gigadevice** is a set of both standard firmware library and ARM CMSIS
-configurations for GigaDevice MCUs. The HAL is organized following the
+The **hal_gigadevice** is a set of standard firmware libraries and ARM CMSIS or
+RISC-V NMSIS configurations for GigaDevice MCUs. The HAL is organized following the
 directory structure detailed below.
 
 ## Directory Structure
@@ -31,22 +31,26 @@ Each ARM firmware library is organized in the following structure:
 
 ### RISC-V
 
-The RISC-V structure is not defined yet. The riscv sub-directory will change
-based on how [NMSIS library](https://github.com/Nuclei-Software/NMSIS/) will
-be integrated in Zephyr. At present date, the structure only reflects current
-manufacturer version.
+Each RISC-V firmware library is organized in the following structure:
 
 ```
-└── gd32bf103
-    ├── riscv
-    │   ├── drivers
-    │   ├── include
-    │   ├── source
-    │   └── stubs
-    └── standard_peripheral
-        ├── include
-        └── source
+.
+└── gd32xxx
+    ├── riscv
+    │   ├── drivers                  (Nuclei NMSIS core headers)
+    │   ├── include                  (SoC header and system_<soc>.h)
+    │   └── source                   (system_<soc>.c)
+    ├── standard_peripheral
+    │   ├── include
+    │   └── source
+    └── wifi_ble_sdk (optional)      (see "GD32VW55x Wi-Fi/BLE SDK" below)
 ```
+
+The `riscv` directory carries the [NMSIS](https://github.com/Nuclei-Software/NMSIS/)
+core headers of the Nuclei core, in the form the manufacturer ships them; the
+Zephyr SoC code provides the startup and interrupt handling itself. The
+`gd32vf103` tree predates this layout and also carries the vendor `stubs`,
+`env_eclipse` and `env_iar` directories.
 
  Any contribution should follow the `How to submit code` using as premisses the
  [Zephyr Contribution Guidelines](https://docs.zephyrproject.org/latest/contribute/index.html).

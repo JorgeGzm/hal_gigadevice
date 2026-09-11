@@ -24,4 +24,6 @@
 #include <gd32l23x_spi.h>
 #elif defined(CONFIG_SOC_SERIES_GD32VF103)
 #include <gd32vf103_spi.h>
+#elif defined(CONFIG_SOC_SERIES_GD32VW55X)
+#include <gd32vw55x_spi.h>
 #endif

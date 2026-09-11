@@ -6,4 +6,6 @@
 
 #if defined(CONFIG_SOC_SERIES_GD32VF103)
 #include <gd32vf103_eclic.h>
+#elif defined(CONFIG_SOC_SERIES_GD32VW55X)
+#include <gd32vw55x_eclic.h>
 #endif

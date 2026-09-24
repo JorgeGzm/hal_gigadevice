@@ -157,3 +157,10 @@ conflict resolution. See below list with the proposed solution:
     `STRINGIFY` comes from Zephyr's `toolchain.h` and the `MSTATUS_FS_*`
     macros that Zephyr's `arch.h` already defines are skipped.
 
+### GD32VW55x Wi-Fi/BLE SDK
+
+The `gd32vw55x/wifi_ble_sdk` directory carries the source layers of the
+GigaDevice GD32VW55x WiFi & BLE SDK used by the Zephyr radio driver; see
+its README for provenance and licensing. The prebuilt radio libraries are
+not tracked: they are declared as blobs in `zephyr/module.yml` and fetched
+with `west blobs fetch hal_gigadevice`.

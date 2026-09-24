@@ -4,3 +4,44 @@ build:
   kconfig-ext: True
   settings:
     dts_root: .
+blobs:
+  - path: lib/gd32vw55x/libwifi.a
+    sha256: 4b0bd836fec0946b1ff2637252e45263299ebc19ab4fec4221912405704148c1
+    type: lib
+    version: 'V1.0.3g'
+    license-path: zephyr/blobs/license.txt
+    url: https://github.com/GigaDevice-GD32-MCU/GD32VW55x_WiFi_BLE_SDK/raw/945c6e28754f1bbdefb8bcd3049593fae8873bd5/MSDK/lib/libwifi.a
+    description: "GD32VW55x Wi-Fi 6 MAC/PHY firmware library"
+    doc-url: https://github.com/GigaDevice-GD32-MCU/GD32VW55x_WiFi_BLE_SDK
+  - path: lib/gd32vw55x/libwpas.a
+    sha256: 807483987afd37b356f36a6e4f80feaa99ae63491216521dcb0ccfa57247662f
+    type: lib
+    version: 'V1.0.3g'
+    license-path: zephyr/blobs/license.txt
+    url: https://github.com/GigaDevice-GD32-MCU/GD32VW55x_WiFi_BLE_SDK/raw/945c6e28754f1bbdefb8bcd3049593fae8873bd5/MSDK/lib/libwpas.a
+    description: "GD32VW55x lightweight WPA/WPA2/WPA3 supplicant library"
+    doc-url: https://github.com/GigaDevice-GD32-MCU/GD32VW55x_WiFi_BLE_SDK
+  - path: lib/gd32vw55x/librf.a
+    sha256: c6bfff1d123916fbc8c282a05aae0b175efc4472616dfa937129fbaba1dda5e9
+    type: lib
+    version: 'V1.0.3g'
+    license-path: zephyr/blobs/license.txt
+    url: https://github.com/GigaDevice-GD32-MCU/GD32VW55x_WiFi_BLE_SDK/raw/945c6e28754f1bbdefb8bcd3049593fae8873bd5/MSDK/lib/librf.a
+    description: "GD32VW55x RF and calibration library (shared Wi-Fi/BLE)"
+    doc-url: https://github.com/GigaDevice-GD32-MCU/GD32VW55x_WiFi_BLE_SDK
+  - path: lib/gd32vw55x/libble_max.a
+    sha256: daa69dde8b1592f8d474a427a027687d32e9a4362f0cae03e4290df41acd4144
+    type: lib
+    version: 'V1.0.3g'
+    license-path: zephyr/blobs/license.txt
+    url: https://github.com/GigaDevice-GD32-MCU/GD32VW55x_WiFi_BLE_SDK/raw/945c6e28754f1bbdefb8bcd3049593fae8873bd5/MSDK/lib/libble_max.a
+    description: "GD32VW55x BLE 5.2 controller + RivieraWaves host library"
+    doc-url: https://github.com/GigaDevice-GD32-MCU/GD32VW55x_WiFi_BLE_SDK
+  - path: lib/gd32vw55x/libnmsis_dsp_rv32imafc.a
+    sha256: 487cec95f587e0e40c70aa41f850d0f92f662cc417877d6c870622908225a23a
+    type: lib
+    version: 'V1.0.3g'
+    license-path: zephyr/blobs/license.txt
+    url: https://github.com/GigaDevice-GD32-MCU/GD32VW55x_WiFi_BLE_SDK/raw/945c6e28754f1bbdefb8bcd3049593fae8873bd5/MSDK/plf/riscv/NMSIS/Library/DSP/GCC/libnmsis_dsp_rv32imafc.a
+    description: "Nuclei NMSIS DSP library (rv32imafc/ilp32f) used by the radio firmware"
+    doc-url: https://github.com/GigaDevice-GD32-MCU/GD32VW55x_WiFi_BLE_SDK

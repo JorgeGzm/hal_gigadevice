@@ -6,3 +6,6 @@
 venv
 __pycache__
 .coverage
+
+# radio libraries fetched with 'west blobs fetch hal_gigadevice'
+zephyr/blobs/lib/

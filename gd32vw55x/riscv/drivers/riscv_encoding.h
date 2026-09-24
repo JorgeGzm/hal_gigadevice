@@ -52,8 +52,10 @@
 #define MSTATUS64_SD        0x8000000000000000
 
 #define MSTATUS_FS_INITIAL  0x00002000
+#ifndef __ZEPHYR__    /* Zephyr's arch.h owns these (identical values); avoid a clash */
 #define MSTATUS_FS_CLEAN    0x00004000
 #define MSTATUS_FS_DIRTY    0x00006000
+#endif
 
 #define SSTATUS_UIE         0x00000001
 #define SSTATUS_SIE         0x00000002

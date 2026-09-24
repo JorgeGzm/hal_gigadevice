@@ -85,7 +85,13 @@
 #define STR(x)                  XSTR(x)
 #define XSTR(x)                 #x
 #define __STR(s)                #s
+#ifdef __ZEPHYR__
+#include <zephyr/toolchain.h>    /* use Zephyr's STRINGIFY (order-independent) */
+#else
+#ifndef STRINGIFY
 #define STRINGIFY(s)            __STR(s)
+#endif
+#endif
 
 #ifdef __cplusplus
 }

@@ -147,3 +147,13 @@ conflict resolution. See below list with the proposed solution:
     But Gigadevice don't upload pack file to [keil packs repo](https://www.keil.com/dd2/pack/).
     Fix: Storage pack as `gd32a50x/support/GigaDevice.GD32A50x_DFP.1.0.0.pack`
     (Download from https://gd32mcu.com/cn/download/7?kw=GD32A5 -> GD32A50x AddOn)
+
+- gd32vw55x
+
+  - `gd32vw55x.h`: `BIT` and `BITS` are guarded separately. Zephyr's
+    `util_macro.h` defines `BIT`, and the vendor's common guard would then
+    leave `BITS` and `GET_BITS` undefined.
+  - NMSIS `riscv_bits.h` and `riscv_encoding.h`: under `__ZEPHYR__`,
+    `STRINGIFY` comes from Zephyr's `toolchain.h` and the `MSTATUS_FS_*`
+    macros that Zephyr's `arch.h` already defines are skipped.
+

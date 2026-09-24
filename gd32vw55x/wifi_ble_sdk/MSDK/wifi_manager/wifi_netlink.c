@@ -2192,8 +2192,15 @@ int wifi_netlink_start(void)
     if (macif_control_start(WIFI_VIF_INDEX_DEFAULT, VIF_STA)) {
         netlink_printf("%s: macif control start failed!!!\r\n", __func__);
     }
+#ifdef GDWIFI_RTOS
+    /* External RTOS port: power save stays off at bring-up, the LPS
+     * doze/wake path is not implemented in the OS wrapper. */
+    wifi_vif_tab[WIFI_VIF_INDEX_DEFAULT].sta.psmode = WIFI_STA_PS_MODE_OFF;
+    wifi_netlink_ps_mode_set(WIFI_VIF_INDEX_DEFAULT, WIFI_STA_PS_MODE_OFF);
+#else
     wifi_vif_tab[WIFI_VIF_INDEX_DEFAULT].sta.psmode = WIFI_STA_PS_MODE_BASED_ON_TD;
     wifi_netlink_ps_mode_set(WIFI_VIF_INDEX_DEFAULT, WIFI_STA_PS_MODE_BASED_ON_TD);
+#endif
 
 #endif /* CONFIG_RF_TEST_SUPPORT */
 

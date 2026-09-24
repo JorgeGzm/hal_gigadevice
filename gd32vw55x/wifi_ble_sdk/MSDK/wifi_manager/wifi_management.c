@@ -397,6 +397,50 @@ static void mgmt_connect_retry(void *eloop_data, void *user_ctx)
     SM_ENTER(MAINTAIN_CONNECTION, SCAN);
 }
 
+#ifdef GDWIFI_RTOS
+/* port: entering CONNECT straight from the SCAN_DONE event races the LMAC
+ * scan teardown -- the connect config batch (MM_SET_BSSID_REQ et al.)
+ * reaches the MM task while the MAC HW is not back to IDLE yet, tripping
+ * the fatal ASSERT(nxmac_current_state_getf() == HW_IDLE) at mm_task.c:2411
+ * inside the prebuilt libwifi (~1 in 5 back-to-back connects, latest
+ * public SDK V1.0.3g/945c6e2 -- no upstream fix available).  Poll the same
+ * MAC HW state register the assert checks and only enter CONNECT once the
+ * HW is actually IDLE, bounded by a timeout so a wedged MAC still fails
+ * through the normal connect-retry path instead of hanging the SM.
+ */
+#define GDWIFI_CONNECT_POLL_MS       10
+#define GDWIFI_CONNECT_POLL_LIMIT    100   /* 100 * 10 ms = 1 s */
+#define GDWIFI_NXMAC_STATE_REG       (*(volatile uint32_t *)0x40030038UL)
+#define GDWIFI_NXMAC_STATE_MASK      0x0FUL /* 0 == HW_IDLE */
+
+SM_STATE(MAINTAIN_CONNECTION, CONNECT);
+
+static uint32_t mgmt_deferred_connect_polls;
+
+static void mgmt_deferred_connect(void *eloop_data, void *user_ctx)
+{
+    wifi_management_sm_data_t *sm = eloop_data;
+
+    if (GET_SM_STATE(MAINTAIN_CONNECTION) != MAINTAIN_CONNECTION_SCAN)
+        return;
+
+    if ((GDWIFI_NXMAC_STATE_REG & GDWIFI_NXMAC_STATE_MASK) != 0 &&
+        mgmt_deferred_connect_polls++ < GDWIFI_CONNECT_POLL_LIMIT) {
+        eloop_timeout_register(GDWIFI_CONNECT_POLL_MS,
+                               mgmt_deferred_connect, sm, user_ctx);
+        return;
+    }
+
+    if (mgmt_deferred_connect_polls)
+        wifi_sm_printf(WIFI_SM_NOTICE, STATE_MACHINE_DEBUG_PREFIX
+                       ": waited %ums for MAC idle before connect\r\n",
+                       (unsigned)(mgmt_deferred_connect_polls *
+                                  GDWIFI_CONNECT_POLL_MS));
+
+    SM_ENTER(MAINTAIN_CONNECTION, CONNECT);
+}
+#endif /* GDWIFI_RTOS */
+
 /************************ WiFi Management Callbacks ***************************/
 #ifdef CFG_80211R
 static bool mgmt_is_ft_roaming(struct mac_scan_result* candidate, struct wifi_sta *sta)
@@ -652,7 +696,13 @@ static int mgmt_switch_mode(wifi_management_sm_data_t *sm)
             mgmt_connect_retry_param_set(sm, 0);
         } while(0);
         SM_ENTRY(MAINTAIN_CONNECTION, IDLE);
+#ifdef GDWIFI_RTOS
+        /* port: keep power save OFF -- the LPDS wake path is not
+         * implemented yet (PM phase); dozing makes the MAC go deaf. */
+        wifi_netlink_ps_mode_set(WIFI_VIF_INDEX_DEFAULT, WIFI_STA_PS_MODE_OFF);
+#else
         wifi_netlink_ps_mode_set(WIFI_VIF_INDEX_DEFAULT, WIFI_STA_PS_MODE_BASED_ON_TD);
+#endif
 
         wifi_sm_printf(WIFI_SM_NOTICE, STATE_MACHINE_DEBUG_PREFIX
                ": vif%d switch to station mode at %d\r\n", vif_idx, sys_os_now(0));
@@ -742,6 +792,11 @@ SM_STATE(MAINTAIN_CONNECTION, SCAN)
 
     eloop_timeout_cancel(mgmt_dhcp_polling, ELOOP_ALL_CTX, ELOOP_ALL_CTX);
     eloop_timeout_cancel(mgmt_link_status_polling, ELOOP_ALL_CTX, ELOOP_ALL_CTX);
+#ifdef GDWIFI_RTOS
+    /* port: a stale deferred-connect from a previous scan must not fire
+     * into this new connection attempt */
+    eloop_timeout_cancel(mgmt_deferred_connect, ELOOP_ALL_CTX, ELOOP_ALL_CTX);
+#endif
 
     if (sm->delayed_connect_retry) // delay the connect
         return;
@@ -1045,7 +1100,17 @@ SM_STEP(MAINTAIN_CONNECTION)
             SM_ENTER(MAINTAIN_CONNECTION, IDLE);
             break;
         case WIFI_MGMT_EVENT_SCAN_DONE:
+#ifdef GDWIFI_RTOS
+            /* port: wait for the MAC HW to be IDLE before connecting (see
+             * mgmt_deferred_connect) */
+            if (!eloop_timeout_is_registered(mgmt_deferred_connect, sm, NULL)) {
+                mgmt_deferred_connect_polls = 0;
+                eloop_timeout_register(GDWIFI_CONNECT_POLL_MS,
+                                       mgmt_deferred_connect, sm, NULL);
+            }
+#else
             SM_ENTER(MAINTAIN_CONNECTION, CONNECT);
+#endif
             break;
         case WIFI_MGMT_EVENT_SCAN_FAIL:
             if (sm->retry_count > 0) {

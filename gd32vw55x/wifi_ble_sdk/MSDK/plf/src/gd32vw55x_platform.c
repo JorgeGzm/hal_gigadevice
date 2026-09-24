@@ -97,7 +97,13 @@ void wifi_lpds_preconfig(uint8_t settle_time)
 
 void wifi_lpds_enter(void)
 {
+#ifdef GDWIFI_RTOS
+    /* port: LPDS entry disabled until the PM phase implements the PMU
+     * wake path -- a dozing MAC never comes back and goes deaf. */
+    return;
+#else
     PMU_CTL1 |= PMU_CTL1_WIFI_LPDS_ON;
+#endif
 }
 
 void wifi_lpds_exit(void)

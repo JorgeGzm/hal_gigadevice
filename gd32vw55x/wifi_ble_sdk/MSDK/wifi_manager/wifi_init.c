@@ -279,7 +279,12 @@ int wifi_init(void)
 
     /* 1. Initialize the TCP/IP stack */
     wifi_pending_task = CO_BIT(IP_TASK);
+#ifdef GDWIFI_RTOS_NET
+    /* External RTOS port: the network stack is up before the Wi-Fi bring-up. */
+    wifi_task_ready(IP_TASK);
+#else
     tcpip_init(tcpip_init_done, NULL);
+#endif
 
     /* 2. wifi power on */
     wifi_exist_flag = 1;

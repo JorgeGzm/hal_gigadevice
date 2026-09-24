@@ -57,7 +57,9 @@ OF SUCH DAMAGE.
 #define PLATFORM_BOARD_32VW55X_SONIC    4
 
 #ifdef CONFIG_PLATFORM_ASIC
+#ifndef __ZEPHYR__ /* CONFIG_BOARD is the Zephyr Kconfig board name; unused here */
 #define CONFIG_BOARD                    PLATFORM_BOARD_32VW55X_START
+#endif
 #endif
 
 // RF type
@@ -78,8 +80,10 @@ OF SUCH DAMAGE.
 #define PLATFORM_CRYSTAL                CRYSTAL_40M
 
 // Wireless mode
+#ifndef __ZEPHYR__ /* selected by the Zephyr driver build */
 #define CFG_WLAN_SUPPORT
 #define CFG_BLE_SUPPORT
+#endif
 #if defined(CFG_WLAN_SUPPORT) && defined(CFG_BLE_SUPPORT)
   #define CFG_COEX
 #endif
@@ -88,9 +92,11 @@ OF SUCH DAMAGE.
 #define NVDS_FLASH_SUPPORT              1
 
 // Ext flash memory size 2: 2M, 16: 16M, 32:32M
+#ifndef __ZEPHYR__ /* CONFIG_BOARD is a string under Zephyr; the QSPI flash is not used */
 #if CONFIG_BOARD == PLATFORM_BOARD_32VW55X_SONIC
 #define QSPI_FLASH_MEM                  32
 #elif CONFIG_BOARD == PLATFORM_BOARD_32VW55X_EVAL
 #define QSPI_FLASH_MEM                  2
+#endif
 #endif
 #endif /* _PLATFORM_DEF_H */

@@ -6,4 +6,6 @@
 
 #if defined(CONFIG_SOC_SERIES_GD32VW55X)
 #include <gd32vw55x_qspi.h>
+#elif defined(CONFIG_SOC_SERIES_GD32W51X)
+#include <gd32w51x_qspi.h>
 #endif

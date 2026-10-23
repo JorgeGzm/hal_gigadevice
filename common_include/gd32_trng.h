@@ -12,4 +12,6 @@
 #include <gd32l23x_trng.h>
 #elif defined(CONFIG_SOC_SERIES_GD32VW55X)
 #include <gd32vw55x_trng.h>
+#elif defined(CONFIG_SOC_SERIES_GD32W51X)
+#include <gd32w51x_trng.h>
 #endif

@@ -6,4 +6,6 @@
 
 #if defined(CONFIG_SOC_SERIES_GD32E50X)
 #include <gd32e50x_sqpi.h>
+#elif defined(CONFIG_SOC_SERIES_GD32W51X)
+#include <gd32w51x_sqpi.h>
 #endif

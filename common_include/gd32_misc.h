@@ -22,4 +22,6 @@
 #include <gd32f527_misc.h>
 #elif defined(CONFIG_SOC_SERIES_GD32L23X)
 #include <gd32l23x_misc.h>
+#elif defined(CONFIG_SOC_SERIES_GD32W51X)
+#include <gd32w51x_misc.h>
 #endif

@@ -8,4 +8,6 @@
 #include <gd32f527_hau.h>
 #elif defined(CONFIG_SOC_SERIES_GD32VW55X)
 #include <gd32vw55x_hau.h>
+#elif defined(CONFIG_SOC_SERIES_GD32W51X)
+#include <gd32w51x_hau.h>
 #endif

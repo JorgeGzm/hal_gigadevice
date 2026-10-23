@@ -1,0 +1,488 @@
+# GD32W515XX pin definitions
+#
+# Sources:
+# - GD32W515xx Datasheet (Rev 1.9), tables 2-5/2-6/2-7: port A/B/C alternate
+#   functions summary.
+#
+# NOTE: the debug port (JTAG/SWD, TRACE), TSITG and EVENTOUT functions are
+# not listed. Only the QFN56 (P) package is described; the QFN36 (T) pin
+# subset is not covered yet.
+#
+# Pin codes:
+#
+# - 56 pins (QFN56): P
+#
+# Memory codes:
+#
+# - 2048Kb Flash, 448Kb SRAM: I
+#
+# Copyright (c) 2026 Jorge Guzman
+# SPDX-License-Identifier: Apache 2.0
+
+model: af
+
+series: gd32w515
+
+variants:
+  - pincode: P
+    memories: [I]
+
+pins:
+  PA0:
+    pincodes: [P]
+    afs:
+      ADC_IN0: ANALOG
+      USART0_TX: 0
+      TIMER1_CH0: 1
+      TIMER1_ETI: 1
+      TIMER4_CH0: 2
+      TSI_G0_IO0: 4
+      USART1_CTS: 7
+  PA1:
+    pincodes: [P]
+    afs:
+      ADC_IN1: ANALOG
+      USART0_RX: 0
+      TIMER1_CH1: 1
+      TIMER4_CH1: 2
+      TSI_G0_IO1: 4
+      USART1_RTS: 7
+      USART1_DE: 7
+  PA2:
+    pincodes: [P]
+    afs:
+      ADC_IN2: ANALOG
+      USART0_CK: 0
+      TIMER1_CH2: 1
+      TIMER4_CH2: 2
+      TSI_G0_IO2: 4
+      I2S1_CKIN: 5
+      TIMER0_CH0: 6
+      USART1_TX: 7
+      HPDF_AUDIO: 14
+  PA3:
+    pincodes: [P]
+    afs:
+      ADC_IN3: ANALOG
+      USART1_CK: 0
+      TIMER1_CH3: 1
+      TIMER4_CH3: 2
+      TSI_G0_IO3: 4
+      I2S1_MCK: 5
+      USART1_RX: 7
+      TIMER0_CH0_ON: 8
+      RTC_OUT: 9
+      HPDF_DATAIN1: 14
+  PA4:
+    pincodes: [P]
+    afs:
+      ADC_IN8: ANALOG
+      USART1_TX: 0
+      I2S1_ADD_SD: 1
+      SPI0_MOSI: 2
+      QSPI_SCK: 3
+      TIMER4_CH2: 4
+      SPI0_NSS: 5
+      SPI1_MOSI: 6
+      I2S1_SD: 6
+      USART1_CK: 7
+      TIMER0_CH1: 8
+      DCI_HSYNC: 13
+  PA5:
+    pincodes: [P]
+    afs:
+      USART1_RX: 0
+      I2S1_MCK: 2
+      QSPI_CSN: 3
+      SPI0_MISO: 4
+      SPI0_SCK: 5
+      TIMER4_CH3: 7
+      TIMER0_CH1_ON: 8
+      DCI_VSYNC: 13
+  PA6:
+    pincodes: [P]
+    afs:
+      TIMER2_CH0: 2
+      QSPI_IO0: 3
+      I2S1_CKIN: 4
+      SPI0_MISO: 5
+      I2S1_MCK: 6
+      SPI0_SCK: 7
+      TIMER0_CH1: 8
+      TIMER1_CH1: 9
+      USART2_TX: 10
+      SDIO_CMD: 12
+      DCI_PIXCLK: 13
+      HPDF_AUDIO: 14
+  PA7:
+    pincodes: [P]
+    afs:
+      SPI1_NSS: 0
+      I2S1_WS: 0
+      TIMER0_CH0_ON: 1
+      TIMER2_CH1: 2
+      QSPI_IO1: 3
+      SPI0_NSS: 4
+      SPI0_MOSI: 5
+      TIMER0_CH1_ON: 6
+      DCI_D7: 7
+      USART2_RX: 8
+      TIMER1_CH2: 9
+  PA8:
+    pincodes: [P]
+    afs:
+      CK_OUT0: 0
+      TIMER0_CH0: 1
+      USART0_RX: 2
+      USART1_RX: 3
+      I2C0_SDA: 5
+      I2C1_SDA: 6
+      USART0_CK: 7
+      TIMER15_CH0: 8
+      RTC_OUT: 9
+      USBFS_SOF: 10
+      SDIO_D1: 12
+  PA9:
+    pincodes: [P]
+    afs:
+      SPI0_MOSI: 0
+      TIMER0_CH1: 1
+      SDIO_CMD: 2
+      SQPI_CLK: 3
+      QSPI_SCK: 4
+      SPI1_SCK: 5
+      I2S1_CK: 5
+      USART0_TX: 7
+      TIMER15_CH0_ON: 8
+      SDIO_D2: 12
+      DCI_D0: 13
+  PA10:
+    pincodes: [P]
+    afs:
+      SPI0_MISO: 0
+      TIMER0_CH2: 1
+      SDIO_D0: 2
+      SQPI_CSN: 3
+      QSPI_CSN: 4
+      TIMER16_CH0: 7
+      DCI_D1: 13
+  PA11:
+    pincodes: [P]
+    afs:
+      SPI0_SCK: 0
+      TIMER0_CH3: 1
+      SDIO_CK: 2
+      SQPI_D0: 3
+      QSPI_IO0: 4
+      TIMER16_BRKIN: 7
+      DCI_D2: 13
+  PA12:
+    pincodes: [P]
+    afs:
+      TIMER0_ETI: 1
+      QSPI_IO1: 4
+      SPI0_NSS: 6
+      USART0_RTS: 7
+      USART0_DE: 7
+      SQPI_D1: 8
+      TIMER16_CH0_ON: 10
+      SDIO_D1: 12
+      DCI_D3: 13
+  PA13:
+    pincodes: [P]
+    afs:
+      I2C0_SMBA: 4
+      USART0_CTS: 7
+      USART1_CTS: 8
+  PA14:
+    pincodes: [P]
+    afs:
+      I2C1_SMBA: 4
+      USART0_RTS: 7
+      USART0_DE: 7
+      USART1_RTS: 8
+      USART1_DE: 8
+  PA15:
+    pincodes: [P]
+    afs:
+      I2C0_SCL: 4
+      SPI0_NSS: 5
+      I2C1_SCL: 6
+      USART0_RX: 7
+  PB0:
+    pincodes: [P]
+    afs:
+      TIMER0_CH1_ON: 1
+      TIMER2_CH1: 2
+      TIMER3_CH0: 3
+      TSI_G1_IO0: 4
+      SDIO_D1: 12
+      DCI_D4: 13
+      DCI_D6: 14
+  PB1:
+    pincodes: [P]
+    afs:
+      TIMER0_CH2_ON: 1
+      TIMER3_CH1: 2
+      TIMER2_CH2: 3
+      TSI_G1_IO1: 4
+      SDIO_D2: 12
+      DCI_D3: 13
+      DCI_D5: 14
+  PB2:
+    pincodes: [P]
+    afs:
+      TIMER1_CH3: 1
+      TIMER3_CH2: 2
+      TIMER2_CH3: 3
+      TSI_G1_IO2: 4
+      SDIO_CK: 12
+      DCI_D2: 13
+      DCI_D4: 14
+  PB3:
+    pincodes: [P]
+    afs:
+      TIMER1_CH1: 1
+      QSPI_IO2: 3
+      SPI0_SCK: 5
+      SPI0_IO2: 6
+      USART0_RX: 7
+      SQPI_D2: 8
+      USART2_CTS: 10
+      TIMER15_BRKIN: 11
+      SDIO_D2: 12
+  PB4:
+    pincodes: [P]
+    afs:
+      TIMER1_CH0: 1
+      TIMER1_ETI: 1
+      QSPI_IO3: 3
+      SPI0_MISO: 5
+      SPI0_IO3: 6
+      USART2_RTS: 7
+      USART2_DE: 7
+      SQPI_D3: 8
+      SDIO_D3: 12
+  PB5:
+    pincodes: [P]
+    afs:
+      IFRP_OUT: 0
+      TIMER1_CH3: 1
+      SPI0_MOSI: 5
+      USART2_CK: 7
+      DCI_D10: 13
+  PB6:
+    pincodes: [P]
+    afs:
+      SPI1_MISO: 5
+      DCI_D5: 13
+  PB7:
+    pincodes: [P]
+    afs:
+      TIMER3_CH1: 2
+      I2C0_SDA: 4
+      SPI1_NSS: 5
+      I2S1_WS: 5
+      USART0_RX: 7
+      DCI_VSYNC: 13
+  PB8:
+    pincodes: [P]
+    afs:
+      TIMER3_CH2: 2
+      SPI1_SCK: 5
+      I2S1_CK: 5
+      SDIO_D4: 12
+      DCI_D6: 13
+  PB9:
+    pincodes: [P]
+    afs:
+      TIMER1_CH1: 1
+      TIMER3_CH3: 2
+      SPI1_MOSI: 5
+      I2S1_SD: 5
+      SDIO_D5: 12
+      DCI_D7: 13
+  PB10:
+    pincodes: [P]
+    afs:
+      TIMER1_CH2: 1
+      TIMER3_ETI: 2
+      TIMER3_CH3: 3
+      TSI_G1_IO3: 4
+      USART2_TX: 7
+      TIMER0_CH1: 8
+      IFRP_OUT: 9
+      SDIO_D7: 12
+      DCI_D1: 13
+      DCI_D3: 14
+  PB11:
+    pincodes: [P]
+    afs:
+      TIMER0_CH1_ON: 2
+      TSI_G2_IO0: 4
+      I2S1_CKIN: 5
+      USART2_RX: 7
+      USBFS_ID: 10
+      SDIO_D6: 12
+      DCI_D0: 13
+      DCI_D2: 14
+  PB12:
+    pincodes: [P]
+    afs:
+      TIMER0_BRKIN: 1
+      TIMER0_CH3: 2
+      TSI_G2_IO1: 4
+      SPI1_NSS: 5
+      I2S1_WS: 5
+      USART2_CK: 7
+      USBFS_DP: 10
+      DCI_D1: 13
+  PB13:
+    pincodes: [P]
+    afs:
+      TIMER0_CH0_ON: 1
+      TSI_G2_IO2: 4
+      SPI1_SCK: 5
+      I2S1_CK: 5
+      USART2_CTS: 7
+      TIMER15_CH0: 8
+      USBFS_DM: 10
+      DCI_D0: 13
+  PB14:
+    pincodes: [P]
+    afs:
+      TIMER0_CH1_ON: 1
+      TSI_G2_IO3: 4
+      SPI1_MISO: 5
+      I2S1_ADD_SD: 6
+      USART2_RTS: 7
+      USART2_DE: 7
+      TIMER15_BRKIN: 8
+  PB15:
+    pincodes: [P]
+    afs:
+      RTC_REFIN: 0
+      TIMER0_CH2_ON: 1
+      I2C0_SCL: 4
+      SPI1_MOSI: 5
+      I2S1_SD: 5
+      I2C1_SCL: 6
+      USART1_TX: 7
+      USART0_TX: 8
+      IFRP_OUT: 9
+  PC0:
+    pincodes: [P]
+    afs:
+      ADC_IN4: ANALOG
+      USART1_TX: 0
+      TIMER0_CH3: 2
+      I2C0_SMBA: 4
+      DCI_D4: 13
+      HPDF_CKIN0: 14
+  PC1:
+    pincodes: [P]
+    afs:
+      ADC_IN5: ANALOG
+      USART1_RX: 0
+      TIMER0_BRKIN: 1
+      I2C1_SMBA: 4
+      SPI1_MOSI: 7
+      I2S1_SD: 7
+      DCI_HSYNC: 12
+      DCI_D8: 13
+      HPDF_CKIN1: 14
+  PC2:
+    pincodes: [P]
+    afs:
+      ADC_IN6: ANALOG
+      TIMER0_ETI: 0
+      TIMER0_CH0: 1
+      TIMER4_CH0: 2
+      I2C0_SCL: 4
+      SPI1_MISO: 5
+      I2S1_ADD_SD: 6
+      I2C1_SDA: 9
+      DCI_VSYNC: 12
+      DCI_D9: 13
+      HPDF_CKOUT: 14
+  PC3:
+    pincodes: [P]
+    afs:
+      ADC_IN7: ANALOG
+      TIMER1_CH0: 1
+      TIMER1_ETI: 1
+      TIMER4_CH1: 2
+      I2C0_SDA: 4
+      SPI1_MOSI: 5
+      I2S1_SD: 5
+      I2C1_SCL: 6
+      TIMER0_CH0_ON: 8
+      DCI_PIXCLK: 12
+      DCI_D11: 13
+      HPDF_DATAIN0: 14
+  PC4:
+    pincodes: [P]
+    afs:
+      I2S1_ADD_SD: 1
+      TIMER2_CH2: 2
+      QSPI_IO2: 3
+      SPI0_IO2: 6
+      SQPI_CLK: 8
+      DCI_D6: 12
+      DCI_D12: 13
+  PC5:
+    pincodes: [P]
+    afs:
+      CK_OUT1: 0
+      TIMER2_CH0: 1
+      TIMER2_CH3: 2
+      QSPI_IO3: 3
+      SPI0_IO3: 6
+      USART2_RX: 7
+      SQPI_CSN: 8
+      DCI_D7: 12
+      DCI_D13: 13
+      DCI_D5: 14
+  PC6:
+    pincodes: [P]
+    afs:
+      TIMER0_BRKIN: 1
+      TIMER2_CH0: 2
+      I2S1_MCK: 5
+      TIMER16_BRKIN: 7
+      TIMER0_CH1: 8
+      TIMER1_CH1: 9
+      USART2_TX: 10
+      SDIO_D6: 12
+      DCI_D0: 13
+  PC7:
+    pincodes: [P]
+    afs:
+      TIMER0_ETI: 0
+      TIMER2_CH1: 2
+      TIMER0_CH1_ON: 3
+      SPI1_SCK: 5
+      I2S1_CK: 5
+      TIMER16_CH0: 7
+      USART2_RX: 8
+      TIMER1_CH2: 9
+      SDIO_D7: 12
+      DCI_D1: 13
+  PC8:
+    pincodes: [P]
+    afs:
+      TIMER2_CH2: 2
+      I2C0_SDA: 5
+      I2C1_SDA: 6
+      USART0_TX: 7
+      SDIO_D0: 12
+      DCI_D2: 13
+  PC14:
+    pincodes: [P]
+    afs:
+      USART0_CK: 0
+      USART1_CK: 1
+  PC15:
+    pincodes: [P]
+    afs:
+      IFRP_OUT: 0

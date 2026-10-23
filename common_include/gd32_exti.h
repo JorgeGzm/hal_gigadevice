@@ -26,4 +26,6 @@
 #include <gd32vf103_exti.h>
 #elif defined(CONFIG_SOC_SERIES_GD32VW55X)
 #include <gd32vw55x_exti.h>
+#elif defined(CONFIG_SOC_SERIES_GD32W51X)
+#include <gd32w51x_exti.h>
 #endif

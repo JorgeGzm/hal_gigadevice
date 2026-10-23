@@ -720,8 +720,11 @@ static void system_clock_180m_40m_hxtal(void)
     /* APB1 = AHB/4 */
     RCU_CFG0 |= RCU_APB1_CKAHB_DIV4;
 
-    /* configure the main PLL, PSC = 40, PLL_N = 360, PLL_P = 2 */ 
-    RCU_PLL = (40U | (360U << 6U) | (((2U >> 1U) - 1U) << 16U) |
+    /* configure the main PLL, PSC = HXTAL/1MHz, PLL_N = 360, PLL_P = 2 */
+    /* Zephyr note: the prescaler follows HXTAL_VALUE (1 MHz PLL input) so
+     * that boards with a 25 MHz crystal also reach 180 MHz.
+     */
+    RCU_PLL = ((HXTAL_VALUE / 1000000U) | (360U << 6U) | (((2U >> 1U) - 1U) << 16U) |
                    (RCU_PLLSRC_HXTAL) );
 
     /* enable PLL */

@@ -157,6 +157,21 @@ conflict resolution. See below list with the proposed solution:
     `STRINGIFY` comes from Zephyr's `toolchain.h` and the `MSTATUS_FS_*`
     macros that Zephyr's `arch.h` already defines are skipped.
 
+- gd32w51x
+
+  - `gd32w51x.h`: `BIT` and `BITS` are guarded separately, as for
+    gd32vw55x.
+  - `gd32w51x_timer.h/c`: `timer_init()` renamed to `gd32_timer_init()`.
+  - `gd32w51x_gpio.h`: `GPIO_OSPEED_MAX` added as an alias of
+    `GPIO_OSPEED_166MHZ`, the name the other series use.
+  - `system_gd32w51x.c`: the 180 MHz HXTAL clock path derives the PLL
+    prescaler from `HXTAL_VALUE` (1 MHz PLL input) instead of a fixed 40,
+    so boards fitted with a 25 MHz crystal also run at 180 MHz.
+  - `SystemInit()` only configures the clocks when built for the secure
+    state with `-mcmse` or when `SYS_NS` is set; Zephyr builds a secure
+    image without CMSE entry functions and sets `SYS_NS=1`, which also
+    selects the non-secure peripheral aliases (`0x4xxxxxxx`).
+
 ### GD32VW55x Wi-Fi/BLE SDK
 
 The `gd32vw55x/wifi_ble_sdk` directory carries the source layers of the

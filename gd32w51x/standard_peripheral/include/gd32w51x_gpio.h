@@ -356,6 +356,8 @@ typedef FlagStatus bit_status;
 #define GPIO_OSPEED_10MHZ          GPIO_OSPEED_LEVEL1        /*!< output max speed 10MHz */
 #define GPIO_OSPEED_25MHZ          GPIO_OSPEED_LEVEL2        /*!< output max speed 25MHz */
 #define GPIO_OSPEED_166MHZ         GPIO_OSPEED_LEVEL3        /*!< output max speed 166MHz */
+/* Zephyr note: maximum speed alias, as named by the other GD32 series */
+#define GPIO_OSPEED_MAX            GPIO_OSPEED_166MHZ
 
 /* GPIO alternate function values */
 #define GPIO_AFR_SET(n, af)        ((uint32_t)((uint32_t)(af) << (4U * (n))))

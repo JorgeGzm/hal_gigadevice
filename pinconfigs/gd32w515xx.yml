@@ -4,17 +4,22 @@
 # - GD32W515xx Datasheet (Rev 1.9), tables 2-5/2-6/2-7: port A/B/C alternate
 #   functions summary.
 #
+# - GD32W515xx Datasheet (Rev 1.9), table 2-4: GD32W515Tx QFN36 pin
+#   definitions. The functions the alternate function tables mark as
+#   GD32W515Px only (DCI and HPDF) are excluded from the QFN36 package.
+#
 # NOTE: the debug port (JTAG/SWD, TRACE), TSITG and EVENTOUT functions are
-# not listed. Only the QFN56 (P) package is described; the QFN36 (T) pin
-# subset is not covered yet.
+# not listed.
 #
 # Pin codes:
 #
 # - 56 pins (QFN56): P
+# - 36 pins (QFN36): T
 #
 # Memory codes:
 #
 # - 2048Kb Flash, 448Kb SRAM: I
+# - 1024Kb Flash, 384Kb SRAM: G
 #
 # Copyright (c) 2026 Jorge Guzman
 # SPDX-License-Identifier: Apache 2.0
@@ -26,10 +31,60 @@ series: gd32w515
 variants:
   - pincode: P
     memories: [I]
+  - pincode: T
+    memories: [G, I]
+
+signal-configs:
+  DCI_D0:
+    exclude-pincodes: [T]
+  DCI_D1:
+    exclude-pincodes: [T]
+  DCI_D10:
+    exclude-pincodes: [T]
+  DCI_D11:
+    exclude-pincodes: [T]
+  DCI_D12:
+    exclude-pincodes: [T]
+  DCI_D13:
+    exclude-pincodes: [T]
+  DCI_D2:
+    exclude-pincodes: [T]
+  DCI_D3:
+    exclude-pincodes: [T]
+  DCI_D4:
+    exclude-pincodes: [T]
+  DCI_D5:
+    exclude-pincodes: [T]
+  DCI_D6:
+    exclude-pincodes: [T]
+  DCI_D7:
+    exclude-pincodes: [T]
+  DCI_D8:
+    exclude-pincodes: [T]
+  DCI_D9:
+    exclude-pincodes: [T]
+  DCI_HSYNC:
+    exclude-pincodes: [T]
+  DCI_PIXCLK:
+    exclude-pincodes: [T]
+  DCI_VSYNC:
+    exclude-pincodes: [T]
+  HPDF_AUDIO:
+    exclude-pincodes: [T]
+  HPDF_CKIN0:
+    exclude-pincodes: [T]
+  HPDF_CKIN1:
+    exclude-pincodes: [T]
+  HPDF_CKOUT:
+    exclude-pincodes: [T]
+  HPDF_DATAIN0:
+    exclude-pincodes: [T]
+  HPDF_DATAIN1:
+    exclude-pincodes: [T]
 
 pins:
   PA0:
-    pincodes: [P]
+    pincodes: [P, T]
     afs:
       ADC_IN0: ANALOG
       USART0_TX: 0
@@ -39,7 +94,7 @@ pins:
       TSI_G0_IO0: 4
       USART1_CTS: 7
   PA1:
-    pincodes: [P]
+    pincodes: [P, T]
     afs:
       ADC_IN1: ANALOG
       USART0_RX: 0
@@ -49,7 +104,7 @@ pins:
       USART1_RTS: 7
       USART1_DE: 7
   PA2:
-    pincodes: [P]
+    pincodes: [P, T]
     afs:
       ADC_IN2: ANALOG
       USART0_CK: 0
@@ -61,7 +116,7 @@ pins:
       USART1_TX: 7
       HPDF_AUDIO: 14
   PA3:
-    pincodes: [P]
+    pincodes: [P, T]
     afs:
       ADC_IN3: ANALOG
       USART1_CK: 0
@@ -74,7 +129,7 @@ pins:
       RTC_OUT: 9
       HPDF_DATAIN1: 14
   PA4:
-    pincodes: [P]
+    pincodes: [P, T]
     afs:
       ADC_IN8: ANALOG
       USART1_TX: 0
@@ -89,7 +144,7 @@ pins:
       TIMER0_CH1: 8
       DCI_HSYNC: 13
   PA5:
-    pincodes: [P]
+    pincodes: [P, T]
     afs:
       USART1_RX: 0
       I2S1_MCK: 2
@@ -100,7 +155,7 @@ pins:
       TIMER0_CH1_ON: 8
       DCI_VSYNC: 13
   PA6:
-    pincodes: [P]
+    pincodes: [P, T]
     afs:
       TIMER2_CH0: 2
       QSPI_IO0: 3
@@ -115,7 +170,7 @@ pins:
       DCI_PIXCLK: 13
       HPDF_AUDIO: 14
   PA7:
-    pincodes: [P]
+    pincodes: [P, T]
     afs:
       SPI1_NSS: 0
       I2S1_WS: 0
@@ -129,7 +184,7 @@ pins:
       USART2_RX: 8
       TIMER1_CH2: 9
   PA8:
-    pincodes: [P]
+    pincodes: [P, T]
     afs:
       CK_OUT0: 0
       TIMER0_CH0: 1
@@ -143,7 +198,7 @@ pins:
       USBFS_SOF: 10
       SDIO_D1: 12
   PA9:
-    pincodes: [P]
+    pincodes: [P, T]
     afs:
       SPI0_MOSI: 0
       TIMER0_CH1: 1
@@ -157,7 +212,7 @@ pins:
       SDIO_D2: 12
       DCI_D0: 13
   PA10:
-    pincodes: [P]
+    pincodes: [P, T]
     afs:
       SPI0_MISO: 0
       TIMER0_CH2: 1
@@ -167,7 +222,7 @@ pins:
       TIMER16_CH0: 7
       DCI_D1: 13
   PA11:
-    pincodes: [P]
+    pincodes: [P, T]
     afs:
       SPI0_SCK: 0
       TIMER0_CH3: 1
@@ -177,7 +232,7 @@ pins:
       TIMER16_BRKIN: 7
       DCI_D2: 13
   PA12:
-    pincodes: [P]
+    pincodes: [P, T]
     afs:
       TIMER0_ETI: 1
       QSPI_IO1: 4
@@ -189,13 +244,13 @@ pins:
       SDIO_D1: 12
       DCI_D3: 13
   PA13:
-    pincodes: [P]
+    pincodes: [P, T]
     afs:
       I2C0_SMBA: 4
       USART0_CTS: 7
       USART1_CTS: 8
   PA14:
-    pincodes: [P]
+    pincodes: [P, T]
     afs:
       I2C1_SMBA: 4
       USART0_RTS: 7
@@ -203,7 +258,7 @@ pins:
       USART1_RTS: 8
       USART1_DE: 8
   PA15:
-    pincodes: [P]
+    pincodes: [P, T]
     afs:
       I2C0_SCL: 4
       SPI0_NSS: 5
@@ -240,7 +295,7 @@ pins:
       DCI_D2: 13
       DCI_D4: 14
   PB3:
-    pincodes: [P]
+    pincodes: [P, T]
     afs:
       TIMER1_CH1: 1
       QSPI_IO2: 3
@@ -252,7 +307,7 @@ pins:
       TIMER15_BRKIN: 11
       SDIO_D2: 12
   PB4:
-    pincodes: [P]
+    pincodes: [P, T]
     afs:
       TIMER1_CH0: 1
       TIMER1_ETI: 1
@@ -316,7 +371,7 @@ pins:
       DCI_D1: 13
       DCI_D3: 14
   PB11:
-    pincodes: [P]
+    pincodes: [P, T]
     afs:
       TIMER0_CH1_ON: 2
       TSI_G2_IO0: 4
@@ -327,7 +382,7 @@ pins:
       DCI_D0: 13
       DCI_D2: 14
   PB12:
-    pincodes: [P]
+    pincodes: [P, T]
     afs:
       TIMER0_BRKIN: 1
       TIMER0_CH3: 2
@@ -338,7 +393,7 @@ pins:
       USBFS_DP: 10
       DCI_D1: 13
   PB13:
-    pincodes: [P]
+    pincodes: [P, T]
     afs:
       TIMER0_CH0_ON: 1
       TSI_G2_IO2: 4
@@ -359,7 +414,7 @@ pins:
       USART2_DE: 7
       TIMER15_BRKIN: 8
   PB15:
-    pincodes: [P]
+    pincodes: [P, T]
     afs:
       RTC_REFIN: 0
       TIMER0_CH2_ON: 1
@@ -469,7 +524,7 @@ pins:
       SDIO_D7: 12
       DCI_D1: 13
   PC8:
-    pincodes: [P]
+    pincodes: [P, T]
     afs:
       TIMER2_CH2: 2
       I2C0_SDA: 5
@@ -478,11 +533,11 @@ pins:
       SDIO_D0: 12
       DCI_D2: 13
   PC14:
-    pincodes: [P]
+    pincodes: [P, T]
     afs:
       USART0_CK: 0
       USART1_CK: 1
   PC15:
-    pincodes: [P]
+    pincodes: [P, T]
     afs:
       IFRP_OUT: 0
